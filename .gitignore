@@ -5,3 +5,4 @@ __pycache__/
 .env
 *.txt
 *.db
+s3util.py
