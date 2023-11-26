@@ -5,9 +5,5 @@ __pycache__/
 .env
 *.txt
 *.db
-<<<<<<< HEAD
-s3util.py
-=======
 s3util.py
 temp.png
->>>>>>> e741503 (PUT request model)
