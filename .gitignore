@@ -6,4 +6,4 @@ __pycache__/
 *.txt
 *.db
 s3util.py
-temp.png
+temp.*
