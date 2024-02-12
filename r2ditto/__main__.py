@@ -2,6 +2,7 @@
 from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.responses import Response, StreamingResponse
 from contextlib import asynccontextmanager
+from typing import AsyncGenerator
 
 # Other deps
 from dotenv import load_dotenv
@@ -18,7 +19,7 @@ bucket = None
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> None:
+async def lifespan(app: FastAPI) -> AsyncGenerator:
     # App lifespan begins
 
     # startup event here
