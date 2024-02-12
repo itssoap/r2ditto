@@ -74,11 +74,23 @@ async def getter(filename: str, request: Request) -> Response:  # type: ignore
 
 @app.get("/", response_model=None, response_class=Response)
 def upload_page() -> Response:
+    resp = "<pre><span style='color: #4BB543;'>GET</span> <span style='color: #4BB543;'>/{filename}</span>  HTTP/1.1</pre>"
+    resp += "<br><hr>"
+    resp += "<pre><span style='color: #3944BC;'>PUT</span> <span style='color: #4BB543;'>/</span>  HTTP/1.1</pre>"
+    resp += "<pre>Content-Type: multipart/form-data</pre>"
+    resp += "<pre>cURL:</pre>"
+    resp += "<textarea id='curl' readonly>curl --request PUT \
+                    --url https://img.itssoap.ninja/ \
+                    --header 'content-type: multipart/form-data' \
+                    --form file=@file</textarea>"
+    resp += "<button onclick=\"copyText()\">Copy</button>"
+    resp += "<script> \
+                function copyText() {\
+                    let text = document.getElementById('curl').innerHTML; \
+                    navigator.clipboard.writeText(text); } \
+            </script>" 
     return Response(
-        content="<pre><span style='color: #4BB543;'>GET</span> <span style='color: #4BB543;'>/{filename}</span>  HTTP/1.1</pre>"
-        + "<br><hr>"
-        + "<pre><span style='color: #3944BC;'>PUT</span> <span style='color: #4BB543;'>/</span>  HTTP/1.1</pre>"
-        + "<pre>Content-Type: multipart/form-data</pre>",
+        content=resp,
         status_code=200,
         media_type="text/html",
     )
